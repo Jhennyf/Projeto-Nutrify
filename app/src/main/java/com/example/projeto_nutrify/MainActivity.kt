@@ -61,7 +61,9 @@ class MainActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Cadastro bem-sucedido!", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, UserInfoActivity::class.java)
+                            startActivity(intent)
+                            finish()
                         } else {
                             Toast.makeText(this, "Erro ao cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
@@ -70,5 +72,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 }

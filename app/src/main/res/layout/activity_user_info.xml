@@ -22,21 +22,12 @@
             android:hint="Data de Nascimento (dd/mm/aaaa)"
             android:inputType="date" />
 
-        <RadioGroup
-            android:id="@+id/genderRadioGroup"
+        <Spinner
+            android:id="@+id/spinnerGender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/maleRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Masculino" />
-            <RadioButton
-                android:id="@+id/femaleRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Feminino" />
-        </RadioGroup>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/gender_array" />
 
         <EditText
             android:id="@+id/weightEditText"
@@ -52,10 +43,19 @@
             android:hint="Altura (cm)"
             android:inputType="numberDecimal" />
 
-        <Button
-            android:id="@+id/saveButton"
+        <Spinner
+            android:id="@+id/spinnerGoal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Salvar Dados" />
+            android:layout_marginTop="16dp"
+            android:entries="@array/goals_array" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Salvar" />
+
     </LinearLayout>
 </ScrollView>

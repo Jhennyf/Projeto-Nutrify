@@ -37,17 +37,22 @@ class HomeActivity : AppCompatActivity() {
                         val tmb = document.getDouble("tmb")
                         val weight = document.getDouble("weight")
                         val height = document.getDouble("height")
+                        val goal = document.getString("goal")
+                        val calorieGoal = document.getDouble("calorieGoal")
 
                         // Exibir os dados na tela
                         welcomeTextView.text = "Bem-vindo, $name!"
                         infoTextView.text = """
-                            Nome: $name
-                            Data de Nascimento: $dateOfBirth
-                            Peso: $weight kg
-                            Altura: $height cm
-                            IMC: ${imc?.toString()?.take(5)}
-                            TMB: ${tmb?.toString()?.take(6)}
+                        Nome: $name
+                        Data de Nascimento: $dateOfBirth
+                        Peso: $weight kg
+                        Altura: $height cm
+                        IMC: ${imc?.toString()?.take(5)}
+                        TMB: ${tmb?.toString()?.take(6)}
+                        Objetivo: $goal
+                        Meta de Calorias: ${calorieGoal?.toString()?.take(6)}
                         """.trimIndent()
+
                     } else {
                         Toast.makeText(this, "Usuário não encontrado!", Toast.LENGTH_SHORT).show()
                     }
@@ -60,3 +65,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 }
+

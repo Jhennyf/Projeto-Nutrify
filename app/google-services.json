@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "109202549823",
+    "project_id": "nutrify-8ab38",
+    "storage_bucket": "nutrify-8ab38.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109202549823:android:e3fb542e0d79f88f949c8a",
+        "android_client_info": {
+          "package_name": "com.example.projeto_nutrify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-0gbIiAqYWKfDfswis7pH2TUg-WKqZww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

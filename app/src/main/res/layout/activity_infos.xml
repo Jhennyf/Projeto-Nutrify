@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_nutrify"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/logo_desc" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informações"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/logoImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold" />
+
+    <!-- Cartão 1 -->
+
+    <!-- Cartão 2 -->
+
+    <!-- Menu Inferior -->
+
+    <LinearLayout
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleText"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/holo_blue_light"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Taxa metabólica Basal (TMB)"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="É a quantidade de energia que o corpo gasta em repouso para manter funções vitais, como respiração e circulação. Ela varia conforme idade, sexo, peso e altura."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/card2"
+        android:layout_width="wrap_content"
+        android:layout_height="116dp"
+        android:layout_above="@+id/bottomNavigationView"
+        android:layout_below="@id/card1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="166dp"
+        android:background="@android:color/holo_blue_light"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="O índice de Massa Corporal (IMC)"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="É uma medida que relaciona o peso com a altura para avaliar se uma pessoa está dentro de uma faixa saudável."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@android:color/black"
+        app:itemTextColor="@android:color/black"
+        app:menu="@menu/bottom_navigation_menu_inferior" />
+</RelativeLayout>

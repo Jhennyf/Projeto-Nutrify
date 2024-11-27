@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Projeto-Nutrify</string>
+    <string name="logo_desc" />
 
     <string-array name="gender_array">
         <item>Masculino</item>

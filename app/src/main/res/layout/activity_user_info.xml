@@ -1,61 +1,169 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F6F6F6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp"
+        android:gravity="center_horizontal">
 
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_nutrify"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vamos completar seu perfil"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Subtítulo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Isso nos ajudará a saber mais sobre você!"
+            android:textColor="#808080"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Nome Completo -->
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nome Completo" />
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Nome Completo"
+            android:drawableStart="@drawable/baseline_supervised_user_circle_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/dateOfBirthEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data de Nascimento (dd/mm/aaaa)"
-            android:inputType="date" />
-
+        <!-- Gênero -->
+        <!-- Gênero -->
         <Spinner
             android:id="@+id/spinnerGender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:entries="@array/gender_array" />
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edit_text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:spinnerMode="dropdown" />
 
-        <EditText
-            android:id="@+id/weightEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Peso (kg)"
-            android:inputType="numberDecimal" />
 
-        <EditText
-            android:id="@+id/heightEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Altura (cm)"
-            android:inputType="numberDecimal" />
-
+        <!-- Objetivo -->
         <Spinner
             android:id="@+id/spinnerGoal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:entries="@array/goals_array" />
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edit_text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:spinnerMode="dropdown" />
 
+
+        <!-- Data de nascimento -->
+        <EditText
+            android:id="@+id/dateOfBirthEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Data de nascimento"
+            android:drawableStart="@drawable/baseline_calendar_month_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <!-- Peso -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/weightEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="Seu peso"
+                android:drawableStart="@drawable/ic_weight"
+                android:drawablePadding="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:background="@drawable/rounded_button"
+                android:text="KG"
+                android:textColor="#00D9FF"
+                android:layout_marginStart="8dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Altura -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/heightEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="Sua altura"
+                android:drawableStart="@drawable/ic_height"
+                android:drawablePadding="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:background="@drawable/rounded_button"
+                android:text="CM"
+                android:textColor="#00D9FF"
+                android:layout_marginStart="8dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Botão Cadastrar -->
         <Button
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="24dp"
-            android:text="Salvar" />
-
+            android:text="Cadastrar"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00D9FF"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

@@ -23,9 +23,19 @@ class UserInfoActivity : AppCompatActivity() {
         val editTextWeight = findViewById<EditText>(R.id.weightEditText)
         val editTextHeight = findViewById<EditText>(R.id.heightEditText)
         val editTextDateOfBirth = findViewById<EditText>(R.id.dateOfBirthEditText)
+        //val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)
+        // val spinnerGoal = findViewById<Spinner>(R.id.spinnerGoal)
+        val btnSave = findViewById<Button>(R.id.btnSave)
+
         val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)
         val spinnerGoal = findViewById<Spinner>(R.id.spinnerGoal)
-        val btnSave = findViewById<Button>(R.id.btnSave)
+
+        val genderOptions = arrayOf("Masculino", "Feminino")
+        val goalOptions = arrayOf("Emagrecer", "Ganhar Massa", "Manter Peso")
+
+        spinnerGender.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, genderOptions)
+        spinnerGoal.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, goalOptions)
+
 
         btnSave.setOnClickListener {
             val name = editTextName.text.toString()

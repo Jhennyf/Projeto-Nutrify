@@ -64,6 +64,15 @@ class UserInfoActivity : AppCompatActivity() {
                 else -> tmb
             }
 
+            // Calcular macronutrientes
+            val carbsCalories = calorieGoal * 0.50
+            val proteinCalories = calorieGoal * 0.20
+            val fatCalories = calorieGoal * 0.30
+
+            val carbsGrams = carbsCalories / 4
+            val proteinGrams = proteinCalories / 4
+            val fatGrams = fatCalories / 9
+
             val userId = auth.currentUser?.uid
             if (userId != null) {
                 val user = hashMapOf(
@@ -75,7 +84,10 @@ class UserInfoActivity : AppCompatActivity() {
                     "tmb" to tmb,
                     "imc" to weight / ((height / 100) * (height / 100)),
                     "goal" to goal,
-                    "calorieGoal" to calorieGoal
+                    "calorieGoal" to calorieGoal,
+                    "carbsGrams" to carbsGrams,
+                    "proteinGrams" to proteinGrams,
+                    "fatGrams" to fatGrams
                 )
 
                 firestore.collection("users").document(userId).set(user)
@@ -89,6 +101,7 @@ class UserInfoActivity : AppCompatActivity() {
                     }
             }
         }
+
     }
 
     private fun calculateAge(dateOfBirth: String): Int {

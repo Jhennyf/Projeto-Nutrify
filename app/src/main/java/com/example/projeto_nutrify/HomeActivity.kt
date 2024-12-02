@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.DecimalFormat
 
 class HomeActivity : AppCompatActivity() {
 
@@ -39,6 +40,15 @@ class HomeActivity : AppCompatActivity() {
                         val height = document.getDouble("height")
                         val goal = document.getString("goal")
                         val calorieGoal = document.getDouble("calorieGoal")
+                        val carbsGrams = document.getDouble("carbsGrams")
+                        val proteinGrams = document.getDouble("proteinGrams")
+                        val fatGrams = document.getDouble("fatGrams")
+
+                        val decimalFormat = DecimalFormat("#")
+
+                        val carbsFormatted = decimalFormat.format(carbsGrams)
+                        val proteinFormatted = decimalFormat.format(proteinGrams)
+                        val fatFormatted = decimalFormat.format(fatGrams)
 
                         // Exibir os dados na tela
                         welcomeTextView.text = "Bem-vindo, $name!"
@@ -51,6 +61,9 @@ class HomeActivity : AppCompatActivity() {
                         TMB: ${tmb?.toString()?.take(6)}
                         Objetivo: $goal
                         Meta de Calorias: ${calorieGoal?.toString()?.take(6)}
+                        Carboidratos: ${carbsFormatted?.toString()?.take(6)} g
+                        Proteínas: ${proteinFormatted?.toString()?.take(6)} g
+                        Gorduras: ${fatFormatted?.toString()?.take(6)} g
                         """.trimIndent()
 
                     } else {

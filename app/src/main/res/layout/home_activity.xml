@@ -3,23 +3,203 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/white">
 
+    <!-- Logo -->
     <TextView
-        android:id="@+id/welcomeTextView"
-        android:layout_width="match_parent"
+        android:id="@+id/logoTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem-vindo, Usuário!"
+        android:text="Nutrify"
+        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:layout_gravity="center_horizontal"
+        android:drawablePadding="8dp" />
+
+    <!-- Calorias totais -->
+    <TextView
+        android:id="@+id/totalCaloriesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1924 Kcal"
         android:textSize="24sp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:textStyle="bold" />
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
 
-    <TextView
-        android:id="@+id/infoTextView"
+    <!-- Informações de Macronutrientes -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Carregando informações..."
-        android:textSize="18sp"
-        android:padding="8dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Proteínas -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/proteinLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proteína"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/proteinValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="96 g"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/proteinCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="348 Kcal"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Gorduras -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fatLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gordura"
+                android:textSize="14sp"
+                android:textColor="@color/yellow"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/fatValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="89 g"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/fatCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="576 Kcal"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Carboidratos -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/carbsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carboidratos"
+                android:textSize="14sp"
+                android:textColor="@color/pink"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/carbsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="240 g"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/carbsCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="960 Kcal"
+                android:textSize="14sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Círculo com calorias restantes -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/circle_background" />
+
+        <TextView
+            android:id="@+id/remainingCaloriesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restantes"
+            android:textSize="18sp"
+            android:textColor="@color/deep_pink"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="-130dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/remainingCaloriesValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="890"
+            android:textSize="32sp"
+            android:textColor="@color/deep_pink"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <!-- Botões de navegação -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/dietTypeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Dieta"
+            android:backgroundTint="@color/light_blue"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/mealDistributionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distribuição de Refeições"
+            android:backgroundTint="@color/light_blue"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -1,35 +1,75 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:gravity="center"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
 
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:src="@drawable/logo_nutrify"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/logo_desc" />
+
+    <!-- Texto Login ou Cadastro -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login ou Cadastro"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold" />
+
+    <!-- Campo de Email -->
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress" />
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@android:drawable/ic_menu_send"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp" />
 
+    <!-- Campo de Senha -->
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:hint="Senha"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:drawableStart="@android:drawable/ic_lock_lock"
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:layout_marginBottom="30dp" />
 
+    <!-- Botão Entrar -->
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login" />
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Entrar"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="15dp" />
 
+    <!-- Botão Cadastrar -->
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastrar" />
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Cadastrar"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

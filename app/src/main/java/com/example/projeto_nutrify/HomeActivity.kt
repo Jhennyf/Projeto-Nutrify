@@ -20,8 +20,15 @@ class HomeActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        val welcomeTextView = findViewById<TextView>(R.id.welcomeTextView)
-        val infoTextView = findViewById<TextView>(R.id.infoTextView)
+        // Referências para os elementos do layout
+        val totalCaloriesTextView = findViewById<TextView>(R.id.totalCaloriesTextView)
+        val remainingCaloriesValueTextView = findViewById<TextView>(R.id.remainingCaloriesValueTextView)
+        val proteinValue = findViewById<TextView>(R.id.proteinValue)
+        val proteinCalories = findViewById<TextView>(R.id.proteinCalories)
+        val fatValue = findViewById<TextView>(R.id.fatValue)
+        val fatCalories = findViewById<TextView>(R.id.fatCalories)
+        val carbsValue = findViewById<TextView>(R.id.carbsValue)
+        val carbsCalories = findViewById<TextView>(R.id.carbsCalories)
 
         // Verifica se o usuário está logado
         val currentUser = auth.currentUser
@@ -32,40 +39,32 @@ class HomeActivity : AppCompatActivity() {
             firestore.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-                        val name = document.getString("name")
-                        val dateOfBirth = document.getString("dateOfBirth")
-                        val imc = document.getDouble("imc")
-                        val tmb = document.getDouble("tmb")
-                        val weight = document.getDouble("weight")
-                        val height = document.getDouble("height")
-                        val goal = document.getString("goal")
-                        val calorieGoal = document.getDouble("calorieGoal")
-                        val carbsGrams = document.getDouble("carbsGrams")
-                        val proteinGrams = document.getDouble("proteinGrams")
-                        val fatGrams = document.getDouble("fatGrams")
+                        // Recuperar dados do Firestore
+                        val calorieGoal = document.getDouble("calorieGoal") ?: 0.0
+                        val carbsGrams = document.getDouble("carbsGrams") ?: 0.0
+                        val proteinGrams = document.getDouble("proteinGrams") ?: 0.0
+                        val fatGrams = document.getDouble("fatGrams") ?: 0.0
+
+                        val carbsCaloriesValue = carbsGrams * 4
+                        val proteinCaloriesValue = proteinGrams * 4
+                        val fatCaloriesValue = fatGrams * 9
 
                         val decimalFormat = DecimalFormat("#")
 
-                        val carbsFormatted = decimalFormat.format(carbsGrams)
-                        val proteinFormatted = decimalFormat.format(proteinGrams)
-                        val fatFormatted = decimalFormat.format(fatGrams)
+                        // Atualizar layout com os dados do Firebase
+                        totalCaloriesTextView.text = "${calorieGoal.toInt()} Kcal"
+                        remainingCaloriesValueTextView.text = "..." // ainda tem que implementar o calculo
 
-                        // Exibir os dados na tela
-                        welcomeTextView.text = "Bem-vindo, $name!"
-                        infoTextView.text = """
-                        Nome: $name
-                        Data de Nascimento: $dateOfBirth
-                        Peso: $weight kg
-                        Altura: $height cm
-                        IMC: ${imc?.toString()?.take(5)}
-                        TMB: ${tmb?.toString()?.take(6)}
-                        Objetivo: $goal
-                        Meta de Calorias: ${calorieGoal?.toString()?.take(6)}
-                        Carboidratos: ${carbsFormatted?.toString()?.take(6)} g
-                        Proteínas: ${proteinFormatted?.toString()?.take(6)} g
-                        Gorduras: ${fatFormatted?.toString()?.take(6)} g
-                        """.trimIndent()
+                        carbsValue.text = "${decimalFormat.format(carbsGrams)} g"
+                        carbsCalories.text = "${decimalFormat.format(carbsCaloriesValue)} Kcal"
 
+                        proteinValue.text = "${decimalFormat.format(proteinGrams)} g"
+                        proteinCalories.text = "${decimalFormat.format(proteinCaloriesValue)} Kcal"
+
+                        fatValue.text = "${decimalFormat.format(fatGrams)} g"
+                        fatCalories.text = "${decimalFormat.format(fatCaloriesValue)} Kcal"
+
+                        Toast.makeText(this, "Dados carregados com sucesso!", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this, "Usuário não encontrado!", Toast.LENGTH_SHORT).show()
                     }
@@ -78,4 +77,3 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 }
-

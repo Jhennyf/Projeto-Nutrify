@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo_nutrify"
+        android:contentDescription="Logo Nutrify" />
+
+
+    <!-- Título e Subtítulo -->
+    <TextView
+        android:id="@+id/profileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Meu Perfil"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileTitle"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Acompanhe sua evolução!"
+        android:textSize="14sp"
+        android:textColor="#000000" />
+
+
+    <!-- Nome do Usuário -->
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subtitle"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="User 01"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+
+    <!-- Descrição do Programa -->
+    <TextView
+        android:id="@+id/programDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:text="Programa para perder gordura"
+        android:textSize="14sp"
+        android:textColor="#000000" />
+
+
+    <!-- Botão Editar -->
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/programDescription"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#00D7FF"
+        android:text="Editar"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+
+    <!-- Dados Pessoais -->
+    <LinearLayout
+        android:id="@+id/personalData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editButton"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="3">
+
+
+        <!-- Altura -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00D7FF"
+            android:padding="12dp"
+            android:gravity="center"
+            android:text="180cm\nAltura"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+
+        <!-- Peso -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00D7FF"
+            android:padding="12dp"
+            android:gravity="center"
+            android:text="65kg\nPeso"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+
+        <!-- Idade -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00D7FF"
+            android:padding="12dp"
+            android:gravity="center"
+            android:text="22 anos\nIdade"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <!-- Resultados -->
+    <TextView
+        android:id="@+id/resultsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/personalData"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:text="Resultados"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+
+    <!-- Taxa Metabólica Basal -->
+    <LinearLayout
+        android:id="@+id/metabolicRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resultsTitle"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_compass"
+            android:contentDescription="Ícone Metabólico" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="8dp"
+            android:text="Taxa Metabólica Basal"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1552 kcal"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+
+    <!-- Índice de Massa Corporal -->
+    <LinearLayout
+        android:id="@+id/bodyMassIndex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/metabolicRate"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_manage"
+            android:contentDescription="Ícone IMC" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="8dp"
+            android:text="Índice Massa Corporal"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25,95"
+            android:textSize="14sp"
+            android:textColor="#000000" />
+    </LinearLayout>
+</RelativeLayout>

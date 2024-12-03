@@ -154,12 +154,15 @@
 
 
     <!-- Taxa Metabólica Basal -->
+
+
+    <!-- Índice de Massa Corporal -->
     <LinearLayout
         android:id="@+id/metabolicRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/resultsTitle"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:orientation="horizontal"
         android:padding="16dp">
 
@@ -167,30 +170,29 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_compass"
-            android:contentDescription="Ícone Metabólico" />
+            android:contentDescription="Ícone Metabólico"
+            android:src="@android:drawable/ic_menu_compass" />
 
 
         <TextView
+            android:id="@+id/metabolicRateTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingStart="8dp"
             android:text="Taxa Metabólica Basal"
-            android:textSize="14sp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1552 kcal"
-            android:textSize="14sp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
     </LinearLayout>
 
-
-    <!-- Índice de Massa Corporal -->
     <LinearLayout
         android:id="@+id/bodyMassIndex"
         android:layout_width="match_parent"

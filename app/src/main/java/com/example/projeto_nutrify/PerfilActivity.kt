@@ -14,6 +14,12 @@ class PerfilActivity : BaseActivity() {
             val intent = Intent(this, InfosActivity::class.java)
             startActivity(intent)
         }
+
+        val metabolicRateTextView = findViewById<TextView>(R.id.metabolicRateTextView)
+        metabolicRateTextView.setOnClickListener {
+            val intent = Intent(this, InfosActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun getLayoutResourceId(): Int {

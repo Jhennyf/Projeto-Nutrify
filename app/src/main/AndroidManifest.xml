@@ -33,7 +33,7 @@
         <activity android:name=".UserInfoActivity" />
         <activity android:name=".AddFoodActivity" />
         <activity android:name=".PerfilActivity" />
-
+        <activity android:name=".InfosActivity" />
     </application>
 
 </manifest>

@@ -22,9 +22,40 @@ class PerfilActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_perfil) // Make sure to set the correct layout
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+
+        val usernameTextView = findViewById<TextView>(R.id.username)
+        val programDescriptionTextView = findViewById<TextView>(R.id.programDescription)
+        val heightTextView = findViewById<TextView>(R.id.height) // Corrected ID
+        val weightTextView = findViewById<TextView>(R.id.weight) // Corrected ID
+        val ageTextView = findViewById<TextView>(R.id.age) // Corrected ID
+
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val name = document.getString("name") ?: "N/A"
+                        val height = document.getDouble("height")?.toString() ?: "N/A"
+                        val weight = document.getDouble("weight")?.toString() ?: "N/A"
+                        val dateOfBirth = document.getString("dateOfBirth") ?: "N/A"
+                        val age = calculateAge(dateOfBirth).toString()
+
+                        usernameTextView.text = name
+                        heightTextView.text = "$height cm\nAltura"
+                        weightTextView.text = "$weight kg\nPeso"
+                        ageTextView.text = "$age anos\nIdade"
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Log.e("PerfilActivity", "Erro ao carregar dados: ${e.message}")
+                }
+        } else {
+            Log.e("PerfilActivity", "User ID is null")
+        }
 
         val imcTextView = findViewById<TextView>(R.id.imcTextView)
         imcTextView.setOnClickListener {

@@ -3,45 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/white">
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome" />
+        android:hint="Nome"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
 
     <EditText
         android:id="@+id/editTextWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Peso" />
+        android:hint="Peso"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
 
     <EditText
         android:id="@+id/editTextHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Altura" />
+        android:hint="Altura"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
 
     <EditText
         android:id="@+id/editTextDateOfBirth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data de Nascimento" />
+        android:hint="Data de Nascimento"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
 
     <Spinner
         android:id="@+id/spinnerGender"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_spinner"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp" />
 
     <Spinner
         android:id="@+id/spinnerGoal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_spinner"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp" />
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar" />
+        android:text="Salvar"
+        android:backgroundTint="@color/black"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

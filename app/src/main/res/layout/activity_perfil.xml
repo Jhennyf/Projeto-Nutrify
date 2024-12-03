@@ -104,6 +104,7 @@
             android:background="#00D7FF"
             android:padding="12dp"
             android:gravity="center"
+            android:id="@+id/height"
             android:text="180cm\nAltura"
             android:textSize="14sp"
             android:textColor="#FFFFFF"
@@ -117,6 +118,7 @@
             android:layout_weight="1"
             android:background="#00D7FF"
             android:padding="12dp"
+            android:id="@+id/weight"
             android:gravity="center"
             android:text="65kg\nPeso"
             android:textSize="14sp"
@@ -126,6 +128,7 @@
 
         <!-- Idade -->
         <TextView
+            android:id="@+id/age"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -6,7 +6,7 @@ import android.widget.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class AddFoodActivity : AppCompatActivity() {
+class AddFoodActivity : BaseActivity() {
     private lateinit var database: DatabaseReference
 
     // Interface
@@ -21,7 +21,6 @@ class AddFoodActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_food)
 
         // Inicializar elementos
         etNome = findViewById(R.id.etNome)
@@ -105,4 +104,9 @@ class AddFoodActivity : AppCompatActivity() {
             Toast.makeText(this, "Erro ao carregar alimentos.", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_add_food
+    }
+
 }

@@ -1,12 +1,14 @@
 package com.example.projeto_nutrify
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 
-class PerfilActivity : AppCompatActivity() {
+class PerfilActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_perfil)
+    }
+
+    override fun getLayoutResourceId(): Int {
+        return R.layout.activity_perfil
     }
 }

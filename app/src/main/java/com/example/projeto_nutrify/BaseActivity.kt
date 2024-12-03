@@ -19,15 +19,15 @@ abstract class BaseActivity : AppCompatActivity() {
                 bottomNavigationView.setOnItemSelectedListener { item ->
                         when (item.itemId) {
                                 R.id.nav_home -> {
-                                        startActivity(Intent(this, HomeActivity::class.java))
+                                        startActivityWithAnimation(Intent(this, HomeActivity::class.java))
                                         true
                                 }
                                 R.id.nav_profile -> {
-                                        startActivity(Intent(this, PerfilActivity::class.java))
+                                        startActivityWithAnimation(Intent(this, PerfilActivity::class.java))
                                         true
                                 }
                                 R.id.nav_add_food -> {
-                                        startActivity(Intent(this, AddFoodActivity::class.java))
+                                        startActivityWithAnimation(Intent(this, AddFoodActivity::class.java))
                                         true
                                 }
                                 else -> false
@@ -36,4 +36,19 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         abstract fun getLayoutResourceId(): Int
+
+        private fun startActivityWithAnimation(intent: Intent) {
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+
+        override fun onBackPressed() {
+                super.onBackPressed()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+
+        protected fun setSelectedNavItem(itemId: Int) {
+                val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                bottomNavigationView.selectedItemId = itemId
+        }
 }

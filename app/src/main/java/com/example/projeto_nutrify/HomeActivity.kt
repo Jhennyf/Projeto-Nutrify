@@ -3,7 +3,6 @@ package com.example.projeto_nutrify
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.DecimalFormat
@@ -19,7 +18,6 @@ class HomeActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Referências para os elementos do layout
         val totalCaloriesTextView = findViewById<TextView>(R.id.totalCaloriesTextView)
         val remainingCaloriesValueTextView = findViewById<TextView>(R.id.remainingCaloriesValueTextView)
         val proteinValue = findViewById<TextView>(R.id.proteinValue)
@@ -29,16 +27,13 @@ class HomeActivity : BaseActivity() {
         val carbsValue = findViewById<TextView>(R.id.carbsValue)
         val carbsCalories = findViewById<TextView>(R.id.carbsCalories)
 
-        // Verifica se o usuário está logado
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
 
-            // Carregar dados do Firestore
             firestore.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
-                        // Recuperar dados do Firestore
                         val calorieGoal = document.getDouble("calorieGoal") ?: 0.0
                         val carbsGrams = document.getDouble("carbsGrams") ?: 0.0
                         val proteinGrams = document.getDouble("proteinGrams") ?: 0.0
@@ -50,18 +45,27 @@ class HomeActivity : BaseActivity() {
 
                         val decimalFormat = DecimalFormat("#")
 
-                        // Atualizar layout com os dados do Firebase
                         totalCaloriesTextView.text = "${calorieGoal.toInt()} Kcal"
-                        remainingCaloriesValueTextView.text = "..." // ainda tem que implementar o calculo
-
                         carbsValue.text = "${decimalFormat.format(carbsGrams)} g"
                         carbsCalories.text = "${decimalFormat.format(carbsCaloriesValue)} Kcal"
-
                         proteinValue.text = "${decimalFormat.format(proteinGrams)} g"
                         proteinCalories.text = "${decimalFormat.format(proteinCaloriesValue)} Kcal"
-
                         fatValue.text = "${decimalFormat.format(fatGrams)} g"
                         fatCalories.text = "${decimalFormat.format(fatCaloriesValue)} Kcal"
+
+                        firestore.collection("food_entries").whereEqualTo("userId", userId).get()
+                            .addOnSuccessListener { foodEntries ->
+                                var totalCaloriesConsumed = 0.0
+                                for (entry in foodEntries) {
+                                    val calories = entry.getDouble("calorias") ?: 0.0
+                                    totalCaloriesConsumed += calories
+                                }
+                                val remainingCalories = calorieGoal - totalCaloriesConsumed
+                                remainingCaloriesValueTextView.text = "${decimalFormat.format(remainingCalories)} Kcal"
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Erro ao carregar dados: ${e.message}", Toast.LENGTH_SHORT).show()
+                            }
 
                         Toast.makeText(this, "Dados carregados com sucesso!", Toast.LENGTH_SHORT).show()
                     } else {

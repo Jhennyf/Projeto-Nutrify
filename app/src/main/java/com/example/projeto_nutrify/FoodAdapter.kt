@@ -21,7 +21,6 @@ class FoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val food = foodList[position]
         holder.bind(food)
-        holder.itemView.setOnClickListener { onFoodClick(food) }
     }
 
     override fun getItemCount(): Int = foodList.size
@@ -31,7 +30,7 @@ class FoodAdapter(
         notifyDataSetChanged()
     }
 
-    class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvFoodName: TextView = itemView.findViewById(R.id.tvFoodName)
         private val tvCalories: TextView = itemView.findViewById(R.id.tvCalories)
         private val tvCarbs: TextView = itemView.findViewById(R.id.tvCarbs)
@@ -40,10 +39,14 @@ class FoodAdapter(
 
         fun bind(food: Food) {
             tvFoodName.text = food.nome
-            tvCalories.text = "Calorias: ${food.calorias}"
-            tvCarbs.text = "Carboidratos: ${food.carboidratos}"
-            tvFat.text = "Gordura: ${food.gordura}"
-            tvProtein.text = "Proteínas: ${food.proteinas}"
+            tvCalories.text = "Calorias: ${food.calorias} kcal"
+            tvCarbs.text = "Carboidratos: ${food.carboidratos} g"
+            tvFat.text = "Gordura: ${food.gordura} g"
+            tvProtein.text = "Proteínas: ${food.proteinas} g"
+
+            itemView.setOnClickListener {
+                onFoodClick(food)
+            }
         }
     }
 }

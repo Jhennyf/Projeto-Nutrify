@@ -12,18 +12,18 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ItemAlimentoActivity : BaseActivity() {
 
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var foodAdapter: FoodAdapter
+    private lateinit var foodAdapter: MacroAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnCriarAlimento: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.activity_item_alimento)
         firestore = FirebaseFirestore.getInstance()
         recyclerView = findViewById(R.id.recyclerViewFood)
         btnCriarAlimento = findViewById(R.id.btnCriarAlimento)
 
-        foodAdapter = FoodAdapter(this, emptyList()) { food ->
+        foodAdapter = MacroAdapter(this, emptyList()) { food ->
             addFoodToDinner(food)
         }
         recyclerView.adapter = foodAdapter
@@ -45,7 +45,7 @@ class ItemAlimentoActivity : BaseActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_food_list)
 
-        val recyclerViewDialog = dialog.findViewById<RecyclerView>(R.id.recyclerViewFoodDialog)
+        val recyclerViewDialog = dialog.findViewById<RecyclerView>(R.id.recyclerViewFood)
         val btnAddFood = dialog.findViewById<Button>(R.id.btnAddFood)
 
         val dialogAdapter = FoodDialogAdapter(this, emptyList()) { food ->

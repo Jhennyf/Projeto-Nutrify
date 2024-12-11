@@ -193,7 +193,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/mealDistributionButton"
+            android:id="@+id/distribuicaoRefeicoesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Distribuição de Refeições"

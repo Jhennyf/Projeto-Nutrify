@@ -34,6 +34,8 @@
         <activity android:name=".AddFoodActivity" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".InfosActivity" />
+        <activity android:name=".MacroActivity" />
+        <activity android:name=".ItemAlimentoActivity" />
     </application>
 
 </manifest>

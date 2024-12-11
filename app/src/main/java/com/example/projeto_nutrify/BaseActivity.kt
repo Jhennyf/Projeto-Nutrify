@@ -27,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
                                         true
                                 }
                                 R.id.nav_add_food -> {
-                                        startActivityWithAnimation(Intent(this, AddFoodActivity::class.java))
+                                        startActivityWithAnimation(Intent(this, MacroActivity::class.java))
                                         true
                                 }
                                 else -> false

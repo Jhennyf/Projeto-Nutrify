@@ -1,15 +1,18 @@
 package com.example.projeto_nutrify
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class AddFoodActivity : BaseActivity() {
-    private lateinit var database: DatabaseReference
+class AddFoodActivity : AppCompatActivity() {
 
-    // Interface
     private lateinit var etNome: EditText
     private lateinit var etCalorias: EditText
     private lateinit var etCarboidratos: EditText
@@ -17,12 +20,19 @@ class AddFoodActivity : BaseActivity() {
     private lateinit var etGordura: EditText
     private lateinit var etQuantidade: EditText
     private lateinit var btnSalvar: Button
-    private lateinit var lvAlimentos: ListView
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+    private var selectedCard: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_food)
 
-        // Inicializar elementos
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        selectedCard = intent.getStringExtra("selectedCard")
+
         etNome = findViewById(R.id.etNome)
         etCalorias = findViewById(R.id.etCalorias)
         etCarboidratos = findViewById(R.id.etCarboidratos)
@@ -30,83 +40,53 @@ class AddFoodActivity : BaseActivity() {
         etGordura = findViewById(R.id.etGordura)
         etQuantidade = findViewById(R.id.etQuantidade)
         btnSalvar = findViewById(R.id.btnSalvar)
-        lvAlimentos = findViewById(R.id.lvAlimentos)
 
-        // Inicializar Firebase
-        database = FirebaseDatabase.getInstance().getReference("alimentos")
-
-        // Configurar botão de salvar
         btnSalvar.setOnClickListener {
-            salvarAlimento()
+            saveFood()
         }
-
-        // Listar alimentos
-        listarAlimentos()
     }
 
-    private fun salvarAlimento() {
-        val nome = etNome.text.toString()
-        val calorias = etCalorias.text.toString().toIntOrNull() ?: 0
-        val carboidratos = etCarboidratos.text.toString().toDoubleOrNull() ?: 0.0
-        val proteinas = etProteinas.text.toString().toDoubleOrNull() ?: 0.0
-        val gordura = etGordura.text.toString().toDoubleOrNull() ?: 0.0
-        val quantidade = etQuantidade.text.toString().toIntOrNull() ?: 0
+    private fun saveFood() {
+        val foodName = findViewById<EditText>(R.id.etNome).text.toString()
+        val calories = findViewById<EditText>(R.id.etCalorias).text.toString().toDoubleOrNull()
+        val carbs = findViewById<EditText>(R.id.etCarboidratos).text.toString().toDoubleOrNull()
+        val protein = findViewById<EditText>(R.id.etProteinas).text.toString().toDoubleOrNull()
+        val fat = findViewById<EditText>(R.id.etGordura).text.toString().toDoubleOrNull()
+        val quantity = findViewById<EditText>(R.id.etQuantidade).text.toString().toDoubleOrNull()
 
-        if (nome.isEmpty()) {
-            Toast.makeText(this, "Por favor, insira o nome do alimento.", Toast.LENGTH_SHORT).show()
+        if (foodName.isEmpty() || calories == null || carbs == null || protein == null || fat == null || quantity == null) {
+            Toast.makeText(this, "Por favor, preencha todos os campos!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Criar objeto do alimento
-        val alimento = mapOf(
-            "nome" to nome,
-            "calorias" to calorias,
-            "carboidratos" to carboidratos,
-            "proteinas" to proteinas,
-            "gordura" to gordura,
-            "quantidade" to quantidade
-        )
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-        // Salvar no Firebase
-        val id = database.push().key!! // Gerar um ID único
-        database.child(id).setValue(alimento)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Alimento salvo com sucesso!", Toast.LENGTH_SHORT).show()
-                limparCampos()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao salvar o alimento.", Toast.LENGTH_SHORT).show()
-            }
-    }
+        if (userId != null && selectedCard != null) {
+            val food = hashMapOf(
+                "name" to foodName,
+                "calories" to calories,
+                "carbs" to carbs,
+                "protein" to protein,
+                "fat" to fat,
+                "quantity" to quantity,
+                "card" to selectedCard,
+                "date" to date
+            )
 
-    private fun limparCampos() {
-        etNome.text.clear()
-        etCalorias.text.clear()
-        etCarboidratos.text.clear()
-        etProteinas.text.clear()
-        etGordura.text.clear()
-        etQuantidade.text.clear()
-    }
-
-    private fun listarAlimentos() {
-        database.orderByChild("nome").get().addOnSuccessListener { dataSnapshot ->
-            val alimentos = mutableListOf<String>()
-            for (child in dataSnapshot.children) {
-                val nome = child.child("nome").value.toString()
-                val quantidade = child.child("quantidade").value.toString()
-                alimentos.add("$nome - $quantidade g")
-            }
-
-            // Exibir os alimentos na ListView
-            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, alimentos)
-            lvAlimentos.adapter = adapter
-        }.addOnFailureListener {
-            Toast.makeText(this, "Erro ao carregar alimentos.", Toast.LENGTH_SHORT).show()
+            firestore.collection("users").document(userId).collection("foods").add(food)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Alimento adicionado com sucesso!", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        this,
+                        "Erro ao adicionar alimento: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
         }
     }
-
-    override fun getLayoutResourceId(): Int {
-        return R.layout.activity_add_food
-    }
-
 }

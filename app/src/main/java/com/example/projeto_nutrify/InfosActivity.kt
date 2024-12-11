@@ -1,7 +1,6 @@
 package com.example.projeto_nutrify
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 
 class InfosActivity : BaseActivity() {
 

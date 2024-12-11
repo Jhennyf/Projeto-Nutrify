@@ -1,34 +1,53 @@
+package com.example.projeto_nutrify
+
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto_nutrify.Alimento
-import com.example.projeto_nutrify.R
 
-class AlimentoAdapter(
-    private val alimentos: List<Alimento>,
-    private val onAlimentoClick: (Alimento) -> Unit
-) : RecyclerView.Adapter<AlimentoAdapter.AlimentoViewHolder>() {
 
-    inner class AlimentoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val nomeTextView: TextView = view.findViewById(R.id.tvNomeAlimento)
-        private val macrosTextView: TextView = view.findViewById(R.id.tvMacrosAlimento)
+class FoodAdapter(
+    private val context: Context,
+    private var foodList: List<Food>,
+    private val onAddFoodClickListener: (Food) -> Unit
+) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
-        fun bind(alimento: Alimento) {
-            nomeTextView.text = alimento.nome
-            macrosTextView.text = "C: ${alimento.carboidratos}g, P: ${alimento.proteinas}g, G: ${alimento.gorduras}g"
-            itemView.setOnClickListener { onAlimentoClick(alimento) }
+    inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val foodName: TextView = itemView.findViewById(R.id.tvFoodName)
+        val calories: TextView = itemView.findViewById(R.id.tvCalories)
+        val carbs: TextView = itemView.findViewById(R.id.tvCarbs)
+        val fat: TextView = itemView.findViewById(R.id.tvFat)
+        val protein: TextView = itemView.findViewById(R.id.tvProtein)
+        val addButton: Button = itemView.findViewById(R.id.btnAddFood)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_food, parent, false)
+        return FoodViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
+        val food = foodList[position]
+        holder.foodName.text = food.name
+        holder.calories.text = "Calorias: ${food.calories} kcal"
+        holder.carbs.text = "Carboidratos: ${food.carbs} g"
+        holder.fat.text = "Gordura: ${food.fat} g"
+        holder.protein.text = "Proteínas: ${food.protein} g"
+
+        holder.addButton.setOnClickListener {
+            onAddFoodClickListener(food)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlimentoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_alimento, parent, false)
-        return AlimentoViewHolder(view)
+    override fun getItemCount(): Int {
+        return foodList.size
     }
 
-    override fun onBindViewHolder(holder: AlimentoViewHolder, position: Int) {
-        holder.bind(alimentos[position])
+    fun updateFoodList(newFoodList: List<Food>) {
+        foodList = newFoodList
+        notifyDataSetChanged()
     }
-
-    override fun getItemCount(): Int = alimentos.size
 }

@@ -23,8 +23,6 @@ class UserInfoActivity : AppCompatActivity() {
         val editTextWeight = findViewById<EditText>(R.id.weightEditText)
         val editTextHeight = findViewById<EditText>(R.id.heightEditText)
         val editTextDateOfBirth = findViewById<EditText>(R.id.dateOfBirthEditText)
-        //val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)
-        // val spinnerGoal = findViewById<Spinner>(R.id.spinnerGoal)
         val btnSave = findViewById<Button>(R.id.btnSave)
 
         val spinnerGender = findViewById<Spinner>(R.id.spinnerGender)

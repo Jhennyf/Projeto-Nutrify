@@ -1,5 +1,6 @@
 package com.example.projeto_nutrify
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -26,6 +27,12 @@ class HomeActivity : BaseActivity() {
         val fatCalories = findViewById<TextView>(R.id.fatCalories)
         val carbsValue = findViewById<TextView>(R.id.carbsValue)
         val carbsCalories = findViewById<TextView>(R.id.carbsCalories)
+
+        val distribuicaoRefeicoesTextView = findViewById<TextView>(R.id.distribuicaoRefeicoesTextView)
+        distribuicaoRefeicoesTextView.setOnClickListener {
+            val intent = Intent(this, AddFoodActivity::class.java)
+            startActivity(intent)
+        }
 
         val currentUser = auth.currentUser
         if (currentUser != null) {

@@ -13,7 +13,7 @@ Os principais objetivos do Nutrify são:
 ## 🛠️ Tecnologias Utilizadas
 
 <div>
-<img align="center" alt="Jv-csharp" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original-wordmark.svg"/> 
+<img align="center" alt="Jv-csharp" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-plain-wordmark.svg"/> 
 <img align="center" alt="Jv-csharp" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original-wordmark.svg"/> 
 </div>
 
@@ -22,7 +22,7 @@ Os principais objetivos do Nutrify são:
 ### Pré-Requisitos
 
 - AndroidStudio
-- SDK 35
+- JDK
 - Firebase
 
 ### Passos para Execução

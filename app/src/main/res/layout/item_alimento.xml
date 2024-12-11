@@ -1,3 +1,4 @@
+<!-- item_alimento.xml -->
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <!-- Toolbar do Card com Nome do Alimento -->
         <LinearLayout
             android:id="@+id/cardToolbar"
@@ -41,7 +41,6 @@
                 android:src="@android:drawable/arrow_down_float"
                 app:tint="@android:color/background_light" />
         </LinearLayout>
-
         <!-- Conteúdo Expandível -->
         <LinearLayout
             android:id="@+id/expandableContent"
@@ -83,26 +82,5 @@
                 android:textSize="14sp"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
-
-        <!-- Botão Criar Alimento -->
-        <Button
-            android:id="@+id/btnCriarAlimento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/blue"
-            android:drawableStart="@android:drawable/ic_input_add"
-            android:drawablePadding="8dp"
-            android:padding="12dp"
-            android:text="Criar Alimento"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
-
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
 </androidx.cardview.widget.CardView>

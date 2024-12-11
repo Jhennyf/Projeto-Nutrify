@@ -27,50 +27,33 @@
                 android:textStyle="bold"
                 android:paddingBottom="4dp"/>
 
-            <LinearLayout
-                android:id="@+id/expandableContent"
+            <TextView
+                android:id="@+id/tvCalories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:paddingTop="8dp">
+                android:textSize="14sp"
+                android:textColor="@android:color/black"/>
 
-                <TextView
-                    android:id="@+id/tvCalories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/tvCarbs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"/>
 
-                <TextView
-                    android:id="@+id/tvCarbs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
+            <TextView
+                android:id="@+id/tvFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"/>
 
-                <TextView
-                    android:id="@+id/tvFat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
-
-                <TextView
-                    android:id="@+id/tvProtein"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/black"/>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvProtein"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btnAddFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adicionar"
-            android:backgroundTint="@color/blue"
-            android:textColor="@android:color/white"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -24,44 +24,21 @@ class ItemAlimentoActivity : BaseActivity() {
         btnCriarAlimento = findViewById(R.id.btnCriarAlimento)
 
         foodAdapter = FoodAdapter(this, emptyList()) { food ->
-            // Handle add food button click
             addFoodToDinner(food)
         }
         recyclerView.adapter = foodAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        fetchFoodFromFirestore()
+        fetchFoods()
 
         btnCriarAlimento.setOnClickListener {
-            showFoodDialog()
+            val intent = Intent(this, AddFoodActivity::class.java)
+            startActivity(intent)
         }
     }
 
     override fun getLayoutResourceId(): Int {
         return R.layout.activity_item_alimento
-    }
-
-    private fun fetchFoodFromFirestore() {
-        firestore.collection("food_entries")
-            .get()
-            .addOnSuccessListener { result ->
-                val foodList = result.map { document ->
-                    Food(
-                        name = document.getString("nome") ?: "",
-                        calories = document.getDouble("calorias") ?: 0.0,
-                        carbs = document.getDouble("carboidratos") ?: 0.0,
-                        fat = document.getDouble("gordura") ?: 0.0,
-                        protein = document.getDouble("proteinas") ?: 0.0,
-                        quantity = document.getDouble("quantidade") ?: 0.0,
-                        card = document.getString("card") ?: "",
-                        date = document.getString("date") ?: ""
-                    )
-                }
-                foodAdapter.updateFoodList(foodList)
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, "Erro ao carregar alimentos: ${exception.message}", Toast.LENGTH_SHORT).show()
-            }
     }
 
     private fun showFoodDialog() {
@@ -71,15 +48,14 @@ class ItemAlimentoActivity : BaseActivity() {
         val recyclerViewDialog = dialog.findViewById<RecyclerView>(R.id.recyclerViewFoodDialog)
         val btnAddFood = dialog.findViewById<Button>(R.id.btnAddFood)
 
-        val dialogAdapter = FoodAdapter(this, emptyList()) { food ->
-            // Handle add food button click in dialog
+        val dialogAdapter = FoodDialogAdapter(this, emptyList()) { food ->
             addFoodToDinner(food)
             dialog.dismiss()
         }
         recyclerViewDialog.adapter = dialogAdapter
         recyclerViewDialog.layoutManager = LinearLayoutManager(this)
 
-        fetchFoodForDialog(dialogAdapter)
+        fetchFoodsForDialog(dialogAdapter)
 
         btnAddFood.setOnClickListener {
             val intent = Intent(this, AddFoodActivity::class.java)
@@ -90,22 +66,11 @@ class ItemAlimentoActivity : BaseActivity() {
         dialog.show()
     }
 
-    private fun fetchFoodForDialog(adapter: FoodAdapter) {
-        firestore.collection("food_entries")
+    private fun fetchFoodsForDialog(adapter: FoodDialogAdapter) {
+        firestore.collection("foods")
             .get()
             .addOnSuccessListener { result ->
-                val foodList = result.map { document ->
-                    Food(
-                        name = document.getString("nome") ?: "",
-                        calories = document.getDouble("calorias") ?: 0.0,
-                        carbs = document.getDouble("carboidratos") ?: 0.0,
-                        fat = document.getDouble("gordura") ?: 0.0,
-                        protein = document.getDouble("proteinas") ?: 0.0,
-                        quantity = document.getDouble("quantidade") ?: 0.0,
-                        card = document.getString("card") ?: "",
-                        date = document.getString("date") ?: ""
-                    )
-                }
+                val foodList = result.toObjects(Food::class.java)
                 adapter.updateFoodList(foodList)
             }
             .addOnFailureListener { exception ->
@@ -113,8 +78,19 @@ class ItemAlimentoActivity : BaseActivity() {
             }
     }
 
+    private fun fetchFoods() {
+        firestore.collection("foods")
+            .get()
+            .addOnSuccessListener { result ->
+                val foodList = result.toObjects(Food::class.java)
+                foodAdapter.updateFoodList(foodList)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Erro ao carregar alimentos: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     private fun addFoodToDinner(food: Food) {
-        // Implement the logic to add the selected food to the dinner list
-        Toast.makeText(this, "${food.name} adicionado ao jantar", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${food.nome} adicionado ao jantar", Toast.LENGTH_SHORT).show()
     }
 }

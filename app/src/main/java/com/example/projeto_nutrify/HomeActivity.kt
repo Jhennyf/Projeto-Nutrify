@@ -30,7 +30,7 @@ class HomeActivity : BaseActivity() {
 
         val distribuicaoRefeicoesTextView = findViewById<TextView>(R.id.distribuicaoRefeicoesTextView)
         distribuicaoRefeicoesTextView.setOnClickListener {
-            val intent = Intent(this, AddFoodActivity::class.java)
+            val intent = Intent(this, MacroActivity::class.java)
             startActivity(intent)
         }
 

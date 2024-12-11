@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FoodAdapter(
+class FoodDialogAdapter(
     private val context: Context,
     private var foodList: List<Food>,
     private val onFoodClick: (Food) -> Unit
-) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+) : RecyclerView.Adapter<FoodDialogAdapter.FoodViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_food, parent, false)

@@ -29,10 +29,6 @@
         android:layout_marginTop="16dp"
         android:textStyle="bold" />
 
-    <!-- Cartão 1 -->
-
-    <!-- Cartão 2 -->
-
     <!-- Menu Inferior -->
 
     <LinearLayout
